@@ -17,3 +17,9 @@ dell’esecuzione della query)
 SELECT *
 FROM `ospiti`
 WHERE EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM date_of_birth) > 20
+
+4)Seleziona tutti gli ospiti il cui nome inizia con la D
+
+SELECT *
+FROM ospiti
+WHERE name LIKE 'D%'

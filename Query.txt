@@ -45,3 +45,23 @@ WHERE ospite_id IS NOT NULL
 9)Quanti posti letto ha l’hotel in totale?
 SELECT SUM(beds)
 FROM stanze
+
+GROUP BY
+
+Conta gli ospiti raggruppandoli per anno di nascita:
+
+SELECT COUNT(*), YEAR(`date_of_birth`)
+FROM `ospiti` 
+GROUP BY YEAR(`date_of_birth`)
+
+Somma i prezzi dei pagamenti raggruppandoli per status:
+
+SELECT SUM(price), status
+FROM `pagamenti`
+GROUP BY status
+
+Conta quante volte è stata prenotata ogni stanza:
+
+SELECT COUNT(*), stanza_id
+FROM `prenotazioni`
+GROUP BY stanza_id

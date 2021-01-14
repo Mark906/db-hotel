@@ -23,3 +23,25 @@ WHERE EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM date_of_birth) > 20
 SELECT *
 FROM ospiti
 WHERE name LIKE 'D%'
+
+
+6)Qual è il prezzo massimo pagato?
+SELECT MAX(price)
+FROM `pagamenti`
+
+
+7)Seleziona gli ospiti riconosciuti con patente e nati nel 1975
+SELECT *
+FROM ospiti
+WHERE document_type = 'driver license' AND YEAR(date_of_birth) = 1975
+
+
+8)Quanti paganti sono anche ospiti?
+SELECT *
+FROM paganti
+WHERE ospite_id IS NOT NULL
+
+
+9)Quanti posti letto ha l’hotel in totale?
+SELECT SUM(beds)
+FROM stanze

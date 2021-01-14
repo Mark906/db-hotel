@@ -76,3 +76,31 @@ Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?:
 SELECT COUNT(prenotazione_id), ospite_id
 FROM `prenotazioni_has_ospiti`
 GROUP BY ospite_id
+
+JOIN
+
+Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?:
+
+SELECT ospiti.name, ospiti.lastname, COUNT(*) AS prenotazioni     
+FROM ospiti    
+JOIN prenotazioni_has_ospiti     
+ON ospiti.id = prenotazioni_has_ospiti.ospite_id     
+GROUP BY ospiti.name, ospiti.lastname     
+HAVING prenotazioni > 2
+
+Stampare tutti gli ospiti per ogni prenotazione:
+
+SELECT prenotazioni_has_ospiti.prenotazione_id, ospiti.name, ospiti.lastname
+FROM ospiti
+JOIN prenotazioni_has_ospiti
+ON ospiti.id = prenotazioni_has_ospiti.ospite_id
+
+Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano:
+
+SELECT SUM(pagamenti.price)
+FROM stanze 
+JOIN prenotazioni 
+ON stanze.id = prenotazioni.stanza_id 
+JOIN pagamenti 
+ON pagamenti.prenotazione_id = prenotazioni.id 
+WHERE floor = 1 AND pagamenti.status = 'accepted'
